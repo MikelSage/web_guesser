@@ -37,10 +37,16 @@ def background(message)
   end
 end
 
+def cheating?
+  params['cheat'] == "true"
+end
+
 get '/' do
   guess = params["guess"]
   message = check_guess(guess.to_i)
+  cheater = cheating?
   background = background(message)
   erb :index, :locals => {:number => settings.number, :message => message,
-                          :guess => guess, :background => background}
+                          :guess => guess, :background => background,
+                          :cheater => cheater}
 end

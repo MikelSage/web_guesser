@@ -5,9 +5,9 @@
     <title>Web Guesser</title>
   </head>
   <body bgcolor=<%= background %>>
-    <p>
-      The SECRET NUMBER is <%= number %>
-    </p>
+    <% if message == "You got it right!" || cheater %>
+      <p>The SECRET NUMBER is <%= number %></p>
+    <% end %>
     <form>
       <input type="text" name="guess" />
       <input type="submit" value="Guess!" />
