@@ -20,8 +20,27 @@ def check_guess(guess)
   end
 end
 
+def background(message)
+  case message
+  when "Way too high!" || "Way too low!"
+    "#ff0000"
+  when "Way too low!"
+    "#ff0000"
+  when "Too high!" || "Too low!"
+    "#ff8282"
+  when "Too low!"
+    "#ff8282"
+  when "You got it right!"
+    "#0ad818"
+  else
+    "white"
+  end
+end
+
 get '/' do
   guess = params["guess"]
   message = check_guess(guess.to_i)
-  erb :index, :locals => {:number => settings.number, :message => message, :guess => guess}
+  background = background(message)
+  erb :index, :locals => {:number => settings.number, :message => message,
+                          :guess => guess, :background => background}
 end
